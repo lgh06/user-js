@@ -2,7 +2,6 @@
 // @name         wechat－右键点击文章页蓝色公众号id 进入微信历史文章－请允许弹出窗口
 // @version      0.0.1
 // @description  请允许弹出窗口－右键点击文章页蓝色公众号id 进入微信历史文章
-// @match        *
 // @include      *://*.qq.com/*
 // @include      *://*.sogou.com/*
 // @author       lgh06
