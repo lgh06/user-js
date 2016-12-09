@@ -5,7 +5,7 @@
 // @match        *://*.xunlei.com/*
 // @include      *://*.xunlei.com/*
 // @author       lgh06
-// @run-at       document-start
+// @run-at       document-idle
 // @grant        none
 // ==/UserScript==
 
@@ -19,5 +19,5 @@
         }
         // Your code here...
     };
-    setTimeout(aaa,5000);
+    setTimeout(aaa,1000);
     })();
