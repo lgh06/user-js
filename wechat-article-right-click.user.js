@@ -42,6 +42,7 @@ jQuery.noConflict();
             onload: function(response) {
                 var label = jQuery(response.responseText).find('.tit').get(0);
                 var $a = jQuery(label).find('a');
+                if(!$a.length) return;
                 window.open($a[0].href);
             }
         });
