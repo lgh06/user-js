@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         wechat－右键点击文章页蓝色公众号id 进入微信历史文章－请允许弹出窗口
-// @version      0.0.1
+// @version      0.0.2
 // @description  请允许弹出窗口－右键点击文章页蓝色公众号id 进入微信历史文章
 // @match        *
 // @include      *://*.qq.com/*
@@ -35,6 +35,7 @@ jQuery.noConflict();
         var sid = s.innerText;
         console.log(sid);
         console.log(11111111);
+
         var aurl = 'http://weixin.sogou.com/weixin?type=1&query='+sid+'&ie=utf8&_sug_=n&_sug_type_=';
         GM_xmlhttpRequest({
             method: "GET",
@@ -44,6 +45,23 @@ jQuery.noConflict();
                 var $a = jQuery(label).find('a');
                 if(!$a.length) return;
                 window.open($a[0].href);
+            }
+        });
+
+    }
+
+    function getCount(title,sid){
+        var curl = 'http://weixin.sogou.com/weixin?type=2&ie=utf8&query='+title+'&tsn=0&usip='+sid+'&from=tool';
+        console.log(curl);
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: curl,
+            onload: function(response) {
+
+                var $s1 = jQuery(response.responseText).find('span.s1');
+                if(!$s1.length) return;
+                console.log('count:'+$s1[0].innerText);
+                jQuery('#post-user').after('<span class="rich_media_meta rich_media_meta_text">'+'阅读'+$s1[0].innerText+'伪</span>');
             }
         });
     }
@@ -62,6 +80,9 @@ jQuery.noConflict();
                 jQuery('#js_profile_qrcode').click(()=>{doSearch(s);}).find('*').css('cursor','pointer');
 
                 console.log($('#post-user').innerText);
+
+                getCount($('#activity-name').innerText,s.innerText);
+
                 $('.rich_media_meta_list').addEventListener('contextmenu', function(ev) {
                     ev.preventDefault();
                     if(ev.target === a){
@@ -74,16 +95,6 @@ jQuery.noConflict();
             console.log(9999);
         }
 
-        if(window.location.href.indexOf('weixin.sogou.com')>=0){
-            var search = getParameterByName('query');
-            var text = $('label[name=em_weixinhao]').innerText;
-            if(search === text) {
-                $('.tit').querySelector('a').click();
-                if(history.length>=3) setTimeout(()=>{history.back();},1000);
-            }
-            console.log(search,text);
-            console.log(jQuery('.tit'));
-        }
     };
     setTimeout(aaa,500);
 })();
