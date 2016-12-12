@@ -31,30 +31,40 @@ jQuery.noConflict();
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
+    function doSearch(s){
+        var sid = s.innerText;
+        console.log(11111111);
+        var aurl = 'http://weixin.sogou.com/weixin?type=1&query='+sid+'&ie=utf8&_sug_=n&_sug_type_=';
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: aurl,
+            onload: function(response) {
+                var label = jQuery(response.responseText).find('.tit').get(0);
+                var $a = jQuery(label).find('a');
+                window.open($a[0].href);
+            }
+        });
+    }
+
     var $ = s => document.querySelector(s);
     var $$ = s => document.querySelectorAll(s);
     var aaa = function(){
         if(window.location.href.indexOf('mp.weixin.qq.com')>=0){
             var a = $('#post-user');
+
             if(a) {
+                jQuery(a).css('cursor','context-menu');
+
                 var s = $('.profile_meta_value');
-                var sid = s.innerText;
+
+                jQuery('#js_profile_qrcode').click(()=>{doSearch(s);}).find('*').css('cursor','pointer');
+
                 console.log($('#post-user').innerText);
                 console.log(sid);
                 $('.rich_media_meta_list').addEventListener('contextmenu', function(ev) {
                     ev.preventDefault();
                     if(ev.target === a){
-                        console.log(11111111);
-                        var aurl = 'http://weixin.sogou.com/weixin?type=1&query='+sid+'&ie=utf8&_sug_=n&_sug_type_=';
-                        GM_xmlhttpRequest({
-                            method: "GET",
-                            url: aurl,
-                            onload: function(response) {
-                                var label = jQuery(response.responseText).find('.tit').get(0);
-                                var $a = jQuery(label).find('a');
-                                window.open($a[0].href);
-                            }
-                        });
+                        doSearch(s);
 
                     }
                     return false;
