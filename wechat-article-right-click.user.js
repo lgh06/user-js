@@ -33,6 +33,7 @@ jQuery.noConflict();
 
     function doSearch(s){
         var sid = s.innerText;
+        console.log(sid);
         console.log(11111111);
         var aurl = 'http://weixin.sogou.com/weixin?type=1&query='+sid+'&ie=utf8&_sug_=n&_sug_type_=';
         GM_xmlhttpRequest({
@@ -60,7 +61,6 @@ jQuery.noConflict();
                 jQuery('#js_profile_qrcode').click(()=>{doSearch(s);}).find('*').css('cursor','pointer');
 
                 console.log($('#post-user').innerText);
-                console.log(sid);
                 $('.rich_media_meta_list').addEventListener('contextmenu', function(ev) {
                     ev.preventDefault();
                     if(ev.target === a){
