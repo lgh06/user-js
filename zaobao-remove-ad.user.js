@@ -15,4 +15,5 @@
     var $ = jQuery.noConflict();
     $('.container').prevAll('iframe,[id^=innity]').remove();
     $('[id^=dfp-ad]').remove();
+    $('[id^=google_ads]').remove();
 })();
