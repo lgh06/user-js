@@ -4,6 +4,7 @@
 // @version      0.1
 // @description  try to take over the world!
 // @match        http://*.dy2018.com/*
+// @match        http://*.xiaopian.com/*
 // @grant        none
 // @author       lgh06
 // @require      https://lib.sinaapp.com/js/jquery/2.2.4/jquery-2.2.4.min.js
