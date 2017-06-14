@@ -5,6 +5,7 @@
 // @description  try to take over the world!
 // @author       You
 // @match        http://dict.youdao.com/search?q=*
+// @match        http://dict.youdao.com/w/*
 // @run-at       document-idle
 // @grant        GM_xmlhttpRequest
 // @require      https://lib.sinaapp.com/js/jquery/2.2.4/jquery-2.2.4.min.js
