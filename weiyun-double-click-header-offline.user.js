@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         weiyun-add-offline-url
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.1.1
 // @description  微云 双击标题栏 离线
 // @author       You
 // @match        https://www.weiyun.com/disk/index.html
@@ -15,7 +15,12 @@
     let $ = jQuery.noConflict();
     $('#_main_bar0').dblclick(()=>{
       $('li[data-action="offline_download"]').click();
-      setTimeout(()=>($('li.link[data-tab="link"]').click(), $('textarea.j-offline-magnet').focus().select()), 1000);
+      setTimeout(
+          ()=>{
+              $('li.link[data-tab="link"]').click();
+              $('textarea.j-offline-magnet').focus().select().keyup( ()=>{ $('div.j-parse-magnet').click();} );
+          }
+       , 1000);
     });
 
 })();
