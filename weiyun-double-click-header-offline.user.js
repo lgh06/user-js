@@ -15,7 +15,7 @@
     let $ = jQuery.noConflict();
     $('#_main_bar0').dblclick(()=>{
       $('li[data-action="offline_download"]').click();
-      setTimeout(()=>$('li.link[data-tab="link"]').click(), 1000);
+      setTimeout(()=>($('li.link[data-tab="link"]').click(), $('textarea.j-offline-magnet').focus().select()), 1000);
     });
 
 })();
