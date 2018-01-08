@@ -14,5 +14,5 @@
 (function() {
     'use strict';
     var $ = jQuery.noConflict();
-    $('body > a').remove();
+    $('body > a,iframe').remove();
 })();
