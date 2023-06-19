@@ -5,7 +5,7 @@
 // @description  try to take over the world!
 // @author       You
 // @require      https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/2.2.4/jquery.min.js
-// @match        http://www.iciba.com/word*
+// @match        www.iciba.com/word*
 // @grant none
 // ==/UserScript==
 
@@ -24,4 +24,5 @@
         },1000);
 
 
-    });})();
+    });
+})();
