@@ -1,7 +1,7 @@
 
 // ==UserScript==
 // @name         泛微OA 创建流程 点击左上角蓝色图标 数据库字段名显示
-// @namespace    http://tampermonkey.net/
+// @namespace    https://jihulab.com/lgh06/user-js/-/blob/master/weaver_OA_workflow_dbfield.user.js
 // @version      0.1
 // @description  try to take over the world!
 // @author       You
