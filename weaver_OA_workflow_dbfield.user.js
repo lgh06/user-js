@@ -10,40 +10,64 @@
 // @grant none
 // ==/UserScript==
 
-(function() {
-    'use strict';
-    var $ = jQuery.noConflict();
+(function () {
+  'use strict';
+  var $ = jQuery.noConflict();
+
+  var clickTimes = 0;
 
 
-    function main(){
-      var list = $("[data-fieldname]").css({ "position": "relative"});
-      Array.from(list).forEach(ele =>{
+  function main() {
+    var list = $("[data-fieldname]").css({ "position": "relative" });
+    Array.from(list).forEach(ele => {
 
-          var innerWrap = document.createElement("div");
-          $(innerWrap).html($(ele).data("fieldname"));
-          $(innerWrap).css({"position": "absolute", right: "0px", top: "0px", "opacity": "0.5", "zoom": "2"}).addClass("liugh");
-          if($(ele).find(".liugh").length){
-          }else{
-            $(ele).append(innerWrap);
-          }
+      if (clickTimes == 1) {
 
-      });
-    }
+        var innerWrap = document.createElement("div");
+        $(innerWrap).html($(ele).data("fieldname"));
+        $(innerWrap).css({ "position": "absolute", right: "0px", top: "0px", "opacity": "0.8", "zoom": "1.6" }).addClass("liugh");
+        if ($(ele).find(".liugh").length) {
+        } else {
+          $(ele).append(innerWrap);
+        }
 
+      } else if (clickTimes == 2) {
+        var innerWrap2 = document.createElement("div");
+        $(innerWrap2).html($(ele).data("fieldmark").substring(5));
+        $(innerWrap2).css({ "position": "absolute", left: "0px", top: "0px", "opacity": "0.8", "zoom": "1.6" }).addClass("liugh2");
+        if ($(ele).find(".liugh2").length) {
+        } else {
+          $(ele).append(innerWrap2);
+        }
+      } else if (clickTimes == 0) {
+        $(ele).find(".liugh,.liugh2").remove();
+      }
 
-    $(document).ready(()=>{
-        console.log($('body'));
-        setTimeout(()=>{
-          //main();
-
-            $(".wea-new-top-req-icon").click(()=>{
-                console.log("INGINGING")
-                main();
-            });
-        },1000);
 
 
 
 
     });
+  }
+
+
+  $(document).ready(() => {
+    console.log($('body'));
+    setTimeout(() => {
+      //main();
+
+      $(".wea-new-top-req-icon").click(() => {
+        clickTimes += 1;
+        if (clickTimes > 2) {
+          clickTimes = 0;
+        }
+        console.log("INGINGING")
+        main();
+      });
+    }, 1000);
+
+
+
+
+  });
 })();
